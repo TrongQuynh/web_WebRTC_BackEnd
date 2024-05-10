@@ -2,13 +2,24 @@ const express = require('express');
 const http = require("http");
 const path = require('path');
 const SocketServer = require('./socket-server');
+const SOCKET_ENUM = require("./enums/socket-event.enum");
 const app = express();
 const cors = require('cors');
+const { Server } = require('socket.io');
 
 const port = 8000;
 const server = http.createServer(app);
 
-const socketIO = new SocketServer(server);
+// const socketIO = new SocketServer(server);
+
+const socketIO = new Server(server, {
+  cors:'*',
+  transports: ['websocket']
+});
+
+socketIO.on(SOCKET_ENUM.SOCKET_CONNECTION, socket => {
+  console.log("[SOCKET-SERVER]: SOMEONE IS COMMING");
+})
 
 // Body parser (Express 4.16+)
 app.use(express.json());
