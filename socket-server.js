@@ -14,8 +14,10 @@ module.exports = class SocketServer {
         this.socketIO = new Server(server, {
             // options
             cors: {
-                origin: '*'
-            }
+                origin: '*',
+                credentials: true
+            },
+            transports: ['polling','websocket'],
         });
 
         this.listenerSocket();
