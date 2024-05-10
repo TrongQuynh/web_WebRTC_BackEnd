@@ -12,12 +12,13 @@ module.exports = class SocketServer {
     constructor(server) {
         console.log("[SOCKET-SERVER] - INIT");
         this.socketIO = new Server(server, {
-            // options
             cors: {
                 origin: ["http://localhost:3000"],
+                methods: ["GET", "POST"],
+                transports: ['websocket', 'polling'],
                 credentials: true
             },
-            transports: ['polling','websocket'],
+            allowEIO3: true
         });
 
         this.listenerSocket();
