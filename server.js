@@ -22,7 +22,7 @@ app.use(express.static(path.join(__dirname, "/public")));
 
 // APIS
 
-app.get("health-check", function(req, res){
+app.get("/health-check", function(req, res){
   return res.json({
     message: "OK",
     status: 200,
