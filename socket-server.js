@@ -12,7 +12,8 @@ module.exports = class SocketServer {
     constructor(server) {
         console.log("[SOCKET-SERVER] - INIT");
         this.socketIO = new Server(server, {
-            cors:'*'
+            cors:'*',
+            transports: ['websocket']
         });
 
         this.listenerSocket();
