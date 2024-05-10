@@ -23,11 +23,16 @@ app.use(express.static(path.join(__dirname, "/public")));
 // APIS
 
 app.get("/health-check", function(req, res){
+  console.log("");
   return res.json({
     message: "OK",
     status: 200,
     data: null  
   })
+})
+
+app.get("/", function (req, res) {
+  return res.redirect("/health-check");
 })
 
 server.listen(port, () => {
